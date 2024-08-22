@@ -4,7 +4,8 @@ from flask_cors import CORS  # type: ignore
 import os
 
 app = Flask(__name__)
-CORS(app)
+# CORS(app)
+CORS(app, resources={r"/*": {"origins": "*"}})
 UPLOAD_FOLDER = "uploads"
 ALLOWED_EXTENSIONS = {"pdf"}
 
@@ -13,6 +14,11 @@ app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
 def allowed_file(filename):
     return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+# @app.route("/health")
+# def health_check():
+#     return jsonify({"status": "healthy"}), 200
 
 
 @app.route("/upload", methods=["POST"])
@@ -41,4 +47,5 @@ def download_file(filename):
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=8050)
+    app.run(debug=True, host="0.0.0.0", port=8050)
+    # app.run(debug=True, port=8050)
