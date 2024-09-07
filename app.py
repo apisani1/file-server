@@ -7,7 +7,7 @@ app = Flask(__name__)
 CORS(app)
 # CORS(app, resources={r"/*": {"origins": "*"}})
 UPLOAD_FOLDER = "uploads"
-ALLOWED_EXTENSIONS = {"pdf"}
+ALLOWED_EXTENSIONS = {"pdf", "doc", "docx", "txt"}
 
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
